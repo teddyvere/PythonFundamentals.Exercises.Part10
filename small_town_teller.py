@@ -8,7 +8,7 @@ class Person:
        self.last_name = last_name
        
     def __str__(self):
-        return f'{id}{self.first_name}{self.last_name}'
+        return f'{self.id} {self.first_name} {self.last_name}'
 
 class Account:
     def __init__(self, number: int, type: str, owner: Person, balance: float):
@@ -17,6 +17,9 @@ class Account:
         self.owner = owner
         self.balance = balance
         
+    def __str__(self):
+        return f'{self.number} {self.type} {self.owner} {self.balance}'
+
     def deposit(self, amount):
         self.balance += amount
         return self.balance
@@ -32,11 +35,12 @@ class Bank:
     def add_customer(self, person):
             if person.id in self.customers:
                 raise ValueError("Person already in system")
-            self.customers[id] = person
+            self.customers[person.id] = person
             
     def print_customers(self):
-        for key,value in self.customers.items():
-            print(key, value)
+        print('Our Customers:')
+        for _, value in self.customers.items():
+            print(value)
 
     def add_account(self, number, id, balance):
         if number in self.accounts:
