@@ -11,14 +11,13 @@ class Person:
         return f'{self.id} {self.first_name} {self.last_name}'
 
 class Account:
-    def __init__(self, number: int, type: str, owner: Person, balance: float):
-        self.number = number
+    def __init__(self, number : float,  type: str, owner: Person, balance: float=0):
         self.type = type
         self.owner = owner
+        self.number = number
         self.balance = balance
-        
     def __str__(self):
-        return f'{self.number} {self.type} {self.owner} {self.balance}'
+        return f' {self.balance}{self.type}{self.owner}'
 
     def deposit(self, amount):
         self.balance += amount
@@ -42,12 +41,12 @@ class Bank:
         for _, value in self.customers.items():
             print(value)
 
-    def add_account(self, number, id, balance):
-        if number in self.accounts:
+    def add_account(self, account: Account):
+        if account.number in self.accounts:
             raise ValueError ("Account already exists")
-        if id not in self.customers:
+        if account.owner not in self.customers:
             raise ValueError("customer does not exist")
-        self.accounts[id] = Account(number, id, balance)
+        self.accounts[account.number,account.type, account.owner, account.balance] = account
 
     def remove_account(self, number):
         if number not in self.accounts:

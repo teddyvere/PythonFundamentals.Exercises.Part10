@@ -36,12 +36,12 @@ From an interactive terminal, you should be able to import these classes an inte
 
 
 ```python
-from small_town_teller import Person, Account, Bank
+from small_town_teller import Person, Account, Bank #4
 
 zc_bank = Bank()
 bob = Person(1, "Bob", "Smith")
 zc_bank.add_customer(bob)
-bob_savings = Account(1001, "SAVINGS", bob)
+bob_savings = Account(1001, "SAVINGS", bob, 0.01)
 zc_bank.add_account(bob_savings)
 zc_bank.balance_inquiry(1001)
 # 0
@@ -90,3 +90,4 @@ zc_bank.customers
 zc_bank.accounts
 # {1001: <persistent_small_town_teller.Account object at 0x1099e04d0>}
 ```
+#d
