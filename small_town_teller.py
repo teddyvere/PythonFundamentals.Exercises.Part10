@@ -2,13 +2,16 @@ import pickle
 
 
 class Person:
-    def __init__(self, id, first_name, last_name):
+    def __init__(self, id: int, first_name: str, last_name: str):
        self.id = id
        self.first_name = first_name
        self.last_name = last_name
+       
+    def __str__(self):
+        return f'{id}{self.first_name}{self.last_name}'
 
 class Account:
-    def __init__(self, number, type, owner, balance):
+    def __init__(self, number: int, type: str, owner: Person, balance: float):
         self.number = number
         self.type = type
         self.owner = owner
@@ -26,10 +29,14 @@ class Bank:
         self.customers = {}
         self.accounts = {}
 
-    def add_customer(self, id, first_name, last_name):
-            if id in self.customers:
+    def add_customer(self, person):
+            if person.id in self.customers:
                 raise ValueError("Person already in system")
-            self.customers[id] = Person(id, first_name, last_name)
+            self.customers[id] = person
+            
+    def print_customers(self):
+        for key,value in self.customers.items():
+            print(key, value)
 
     def add_account(self, number, id, balance):
         if number in self.accounts:
@@ -91,3 +98,5 @@ class PersistenceUtils:
         except Exception as e:
             print(f"An error occurred while reading the pickle file: {e}")
             return None
+
+#999
